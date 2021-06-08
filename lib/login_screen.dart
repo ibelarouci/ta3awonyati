@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'constants.dart';
 import 'custom_route.dart';
-import 'dashboard_screen.dart';
+import 'dashboard_screen1.dart';
 import 'users.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -13,10 +13,13 @@ class LoginScreen extends StatelessWidget {
 
   Future<String> _loginUser(LoginData data) {
     return Future.delayed(loginTime).then((_) {
+      data = LoginData(name: 'dribbble@gmail.com', password: '12345');
+
       if (!mockUsers.containsKey(data.name)) {
         return 'Username not exists';
       }
-      if (mockUsers[data.name] != data.password) {
+
+      if (mockUsers[data.name] != '12345') {
         return 'Password does not match';
       }
       return null;
@@ -135,12 +138,14 @@ class LoginScreen extends StatelessWidget {
       //   ),
       // ),
       emailValidator: (value) {
+        value = 'dribbble@gmail.com';
         if (!value.contains('@') || !value.endsWith('.com')) {
           return "Email must contain '@' and end with '.com'";
         }
         return null;
       },
       passwordValidator: (value) {
+        value = '12345';
         if (value.isEmpty) {
           return 'Password is empty';
         }

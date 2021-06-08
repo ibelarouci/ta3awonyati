@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:graphql/client.dart';
 import 'constants.dart';
 
@@ -31,7 +29,7 @@ GraphQLClient getClient() {
 class GqlClient {
   static GraphQLClient client;
 
-  Future<String> fetchgraphql() async {
+  Future<dynamic> getHarvestByOwner() async {
     client = await getGraphQLClient();
     if (client == null) {
       print(" null");
@@ -40,21 +38,19 @@ class GqlClient {
     }
     ;
     print("helloooooooooooooooo world1");
-    QueryOptions options = QueryOptions(document: gql(r'''query {
-  getAllFarms {
-    id
-  title
-    owner
-    {farms {id}
-    }
-  }
-}'''));
+    QueryOptions options = QueryOptions(document: gql(r'''query 
+    {getHarvestByOwner(ownerId:"60baa02add964433341b421a")
+    {startDate
+     harvestDate
+     harvestQuantity
+     harvestDetail{title}
+     farmHarvest {title}}}'''));
 
     QueryResult result = await client.query(options);
     print("helloooooooooooooooo world");
-    dynamic l = result.data['getAllFarms'][0];
+    dynamic l = result.data['getHarvestByOwner'];
 
-    print(l["__typename"]);
-    return 'yes';
+    print(l[0]);
+    return l;
   }
 }

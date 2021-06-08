@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
-import 'dashboard_screen.dart';
+import 'dashboard_screen1.dart';
 import 'login_screen.dart';
 import 'transition_route_observer.dart';
 import 'gqlclient.dart';
@@ -11,8 +11,7 @@ import 'package:graphql/client.dart';
 
 void main() async {
   GqlClient client1 = GqlClient();
-  client1.fetchgraphql();
-
+  client1.getHarvestByOwner();
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
       systemNavigationBarColor:
