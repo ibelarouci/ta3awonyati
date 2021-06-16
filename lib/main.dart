@@ -2,6 +2,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
 import 'dashboard_screen1.dart';
+import 'harvest.dart';
 import 'login_screen.dart';
 import 'transition_route_observer.dart';
 import 'gqlclient.dart';
@@ -67,6 +68,7 @@ class MyApp extends StatelessWidget {
       routes: {
         LoginScreen.routeName: (context) => LoginScreen(),
         DashboardScreen.routeName: (context) => DashboardScreen(),
+        Harvest.routeName: (context) => Harvest(),
       },
     );
   }
