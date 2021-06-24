@@ -43,6 +43,7 @@ dependencies:
   flutter_portal: ^0.4.0
   autocomplete_textfield: ^1.7.3
   flutter_wall_layout: ^1.0.0
+  date_time_picker: ^2.0.0
 
 dev_dependencies:
   flutter_test:

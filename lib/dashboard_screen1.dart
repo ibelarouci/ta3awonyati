@@ -3,6 +3,7 @@ import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'gqlclient.dart';
 import 'constants.dart';
 import 'harvest.dart';
+import 'navDrawer.dart';
 
 class DashboardScreen extends StatefulWidget {
   static const routeName = '/dashboard';
@@ -13,17 +14,17 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class DashboardScreenState extends State<DashboardScreen> {
-  Widget getCardItem(dynamic harvestlist) {
+  Widget getCardItem(dynamic harvestItem) {
     return ExpansionTileCard(
       borderRadius: BorderRadius.all(Radius.circular(8.0)),
       //elevation: 5.0,
       leading: CircleAvatar(
           radius: 30.0,
-          child: Text(harvestlist['harvestDetail']['title'][0],
+          child: Text(harvestItem['harvestDetail']['title'][0],
               style: TextStyle(fontSize: 25))),
-      title: Text(harvestlist['harvestDetail']['title'],
+      title: Text(harvestItem['harvestDetail']['title'],
           style: TextStyle(fontSize: 30)),
-      subtitle: Text(harvestlist['farmHarvest']['title']),
+      subtitle: Text(harvestItem['farmHarvest']['title']),
       children: <Widget>[
         Divider(
           thickness: 1.0,
@@ -36,22 +37,22 @@ class DashboardScreenState extends State<DashboardScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text("الكمية :  " +
-                  (harvestlist['harvestQuantity'] != null
-                      ? harvestlist['harvestQuantity'].toString()
+                  (harvestItem['harvestQuantity'] != null
+                      ? harvestItem['harvestQuantity'].toString()
                       : '')),
               Text("من  :  " +
-                  (harvestlist['startDate'] != null
+                  (harvestItem['startDate'] != null
                       ? Constants.getStringDate(
-                          int.parse(harvestlist['startDate']))
+                          int.parse(harvestItem['startDate']))
                       : '')),
               Text("إلى غاية :  " +
-                  (harvestlist['harvestDate'] != null
+                  (harvestItem['harvestDate'] != null
                       ? Constants.getStringDate(
-                          int.parse(harvestlist['harvestDate']))
+                          int.parse(harvestItem['harvestDate']))
                       : '')),
               Text("دورة الانتاج:  " +
-                  (harvestlist['harvestCycle'] != null
-                      ? harvestlist['harvestCycle'].toString()
+                  (harvestItem['harvestCycle'] != null
+                      ? harvestItem['harvestCycle'].toString()
                       : '')),
             ],
           ),
@@ -63,7 +64,15 @@ class DashboardScreenState extends State<DashboardScreen> {
           children: <Widget>[
             TextButton(
               onPressed: () {
-                Navigator.of(context).pushNamed(Harvest.routeName);
+                // Navigator.of(context).pushNamed(Harvest.routeName);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Harvest(harvest: harvestItem),
+                  ),
+                );
+                print(
+                    "chane farm harvest is done${harvestItem["farmHarvest"]["title"]}");
               },
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -84,10 +93,12 @@ class DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Directionality(
-            textDirection: TextDirection.rtl,
-            child: FutureBuilder<dynamic>(
+    return Directionality(
+        textDirection: TextDirection.rtl,
+        child: Scaffold(
+            appBar: AppBar(title: Text("مشاريع الانتاج")),
+            drawer: NavDrawer(),
+            body: FutureBuilder<dynamic>(
               future: GqlClient
                   .getHarvestByOwner(), // a previously-obtained Future<String> or null
               builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {

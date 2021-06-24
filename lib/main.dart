@@ -1,12 +1,10 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
-import 'constants.dart';
+
 import 'dashboard_screen1.dart';
 import 'harvest.dart';
 import 'login_screen.dart';
 import 'transition_route_observer.dart';
-import 'gqlclient.dart';
-import 'package:graphql/client.dart';
 
 //final AuthLink authLink = AuthLink(getToken: () => Constants.p_a_t);
 
@@ -34,31 +32,29 @@ class MyApp extends StatelessWidget {
         // fontFamily: 'SourceSansPro',
         textTheme: TextTheme(
           headline3: TextStyle(
-            fontFamily: 'OpenSans',
             fontSize: 45.0,
             // fontWeight: FontWeight.w400,
             color: Colors.orange,
           ),
           button: TextStyle(
-            // OpenSans is similar to NotoSans but the uppercases look a bit better IMO
-            fontFamily: 'OpenSans',
-          ),
+              // OpenSans is similar to NotoSans but the uppercases look a bit better IMO
+
+              ),
           caption: TextStyle(
-            fontFamily: 'NotoSans',
             fontSize: 12.0,
             fontWeight: FontWeight.normal,
             color: Colors.deepPurple[300],
           ),
-          headline1: TextStyle(fontFamily: 'Quicksand'),
-          headline2: TextStyle(fontFamily: 'Quicksand'),
-          headline4: TextStyle(fontFamily: 'Quicksand'),
-          headline5: TextStyle(fontFamily: 'NotoSans'),
-          headline6: TextStyle(fontFamily: 'NotoSans'),
-          subtitle1: TextStyle(fontFamily: 'NotoSans'),
-          bodyText1: TextStyle(fontFamily: 'NotoSans'),
-          bodyText2: TextStyle(fontFamily: 'NotoSans'),
-          subtitle2: TextStyle(fontFamily: 'NotoSans'),
-          overline: TextStyle(fontFamily: 'NotoSans'),
+          headline1: TextStyle(),
+          headline2: TextStyle(),
+          headline4: TextStyle(),
+          headline5: TextStyle(),
+          headline6: TextStyle(),
+          subtitle1: TextStyle(),
+          bodyText1: TextStyle(),
+          bodyText2: TextStyle(),
+          subtitle2: TextStyle(),
+          overline: TextStyle(),
         ),
       ),
       home: LoginScreen(),

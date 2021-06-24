@@ -46,7 +46,7 @@ class TransitionRouteObserver<R extends TransitionRoute<dynamic>>
         }
       }
 
-      final subscribers = _listeners[route as R]?.toList();
+      final subscribers = _listeners[route]?.toList();
 
       if (subscribers != null) {
         for (var routeAware in subscribers) {
