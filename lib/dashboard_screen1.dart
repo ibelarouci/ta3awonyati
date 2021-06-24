@@ -84,13 +84,11 @@ class DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    GqlClient client1 = GqlClient();
-
     return Scaffold(
         body: Directionality(
             textDirection: TextDirection.rtl,
             child: FutureBuilder<dynamic>(
-              future: client1
+              future: GqlClient
                   .getHarvestByOwner(), // a previously-obtained Future<String> or null
               builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
                 List<Widget> children;

@@ -11,8 +11,7 @@ import 'package:graphql/client.dart';
 //final AuthLink authLink = AuthLink(getToken: () => Constants.p_a_t);
 
 void main() async {
-  GqlClient client1 = GqlClient();
-  client1.getHarvestByOwner();
+//  GqlClient.getHarvestByOwner();
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
       systemNavigationBarColor:
