@@ -63,16 +63,15 @@ class DashboardScreenState extends State<DashboardScreen> {
           buttonMinWidth: 90.0,
           children: <Widget>[
             TextButton(
-              onPressed: () {
+              onPressed: () async {
                 // Navigator.of(context).pushNamed(Harvest.routeName);
-                Navigator.push(
+                harvestItem = await Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => Harvest(harvest: harvestItem),
                   ),
                 );
-                print(
-                    "chane farm harvest is done${harvestItem["farmHarvest"]["title"]}");
+                print("chane farm harvest is done$harvestItem");
               },
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,

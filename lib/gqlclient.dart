@@ -57,8 +57,12 @@ class GqlClient {
     {startDate
      harvestDate
      harvestQuantity
-     harvestDetail{title}
-     farmHarvest {title}}}'''), fetchPolicy: FetchPolicy.networkOnly);
+     harvestDetail{
+       id
+       title}
+     farmHarvest {
+       id
+       title}}}'''), fetchPolicy: FetchPolicy.networkOnly);
 
     QueryResult result = await client.query(options);
 
@@ -86,6 +90,26 @@ class GqlClient {
     dynamic l = result.data['getFarmByOwner'];
 
     print("getFarmByOwner:${l[0]}");
+    return l;
+  }
+
+  static Future<dynamic> getAllHarvestDetails() async {
+    if (client == null) {
+      client = await getGraphQLClient();
+    }
+
+    QueryOptions options = QueryOptions(document: gql(r'''query {
+  getAllHarvestDetails
+  {id
+  title
+  }
+}'''), fetchPolicy: FetchPolicy.networkOnly);
+
+    QueryResult result = await client.query(options);
+
+    dynamic l = result.data['getAllHarvestDetails'];
+
+    print("getAllHarvestDetails:${l[0]}");
     return l;
   }
 }
